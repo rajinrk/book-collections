@@ -18,7 +18,7 @@ export const RootNavigation: React.FC = () => {
   const isAuthenticated = useSelector(getIsAuthenticated);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Box className="min-h-screen flex flex-col">
         <Header isAuthenticated={isAuthenticated} />
 
