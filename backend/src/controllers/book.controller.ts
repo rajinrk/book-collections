@@ -1,4 +1,5 @@
-import { Request, Response } from 'express';import Book from '../models/book.model';
+import { Request, Response } from 'express';
+import Book from '../models/book.model';
 import { errorResponse, successResponse } from '../utils/response.utils';
 import { validatePayload } from '../decorators/payloadValidator.decorator';
 import { BookDto } from '../dtos/book.dto';
@@ -8,7 +9,7 @@ import { checkAuth } from '../decorators/auth.decorator';
 class BookController {
   @catchError
   static async getAllBooks(req: Request, res: Response) {
-    const { search = '', page = 1, limit = 10 } = req.query;
+    const { search = '', page = 1, limit = 12 } = req.query;
     const pageNum = parseInt(page as string, 10) || 1;
     const limitNum = parseInt(limit as string, 10) || 10;
     const skip = (pageNum - 1) * limitNum;

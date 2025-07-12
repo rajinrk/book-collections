@@ -21,7 +21,7 @@ interface BookListProps {
 const BookList: React.FC<BookListProps> = ({ books, onEdit, onDelete }) => {
   return (
     <Box className="w-full">
-      <Box className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <Box className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
         {books.map(book => (
           <Paper
             key={book?._id}
