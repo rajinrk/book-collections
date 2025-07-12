@@ -34,8 +34,6 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({ logout }) => {
     { label: 'Logout', onClick: logout, icon: <LogOut size={16} /> },
   ];
 
-  console.log(userData, 'userdata');
-
   return (
     <div className="flex items-center gap-4">
       {/* Profile Icon */}
