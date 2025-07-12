@@ -74,7 +74,7 @@ const Dashboard: React.FC = () => {
   };
 
   useEffect(() => {
-    handleBook({ search });
+    handleBook({ search, page: 1 });
   }, [search]);
 
   return (
