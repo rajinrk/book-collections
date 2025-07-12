@@ -1,8 +1,5 @@
 import { MenuItem, IconButton, Menu, ListItemIcon, ListItemText } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import LogoutIcon from '@mui/icons-material/Logout';
-
-import DashboardIcon from '@mui/icons-material/Dashboard';
+import { Menu as MenuIcon, LayoutDashboard, LogOut } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,15 +27,15 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({ logout }) => {
   };
 
   const menuItems = [
-    { label: 'Dashboard', path: '/dashboard', icon: <DashboardIcon fontSize="small" /> },
-    { label: 'Logout', onClick: logout, icon: <LogoutIcon fontSize="small" /> },
+    { label: 'Dashboard', path: '/dashboard', icon: <LayoutDashboard size={16} /> },
+    { label: 'Logout', onClick: logout, icon: <LogOut size={16} /> },
   ];
 
   return (
     <div className="flex items-center gap-4">
       {/* Menu Icon */}
       <IconButton onClick={handleMenuOpen} sx={{ color: 'black' }}>
-        <MenuIcon />
+        <MenuIcon size={20} />
       </IconButton>
 
       {/* Dropdown Menu */}

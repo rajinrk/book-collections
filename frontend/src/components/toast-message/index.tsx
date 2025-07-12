@@ -1,15 +1,15 @@
 import { toast } from 'react-toastify';
-import CloseIcon from '@mui/icons-material/Close';
 import { Box } from '@mui/material';
+import { ShieldCloseIcon } from 'lucide-react';
 
 interface ToastOptions {
   position?:
-  | 'top-right'
-  | 'top-center'
-  | 'top-left'
-  | 'bottom-right'
-  | 'bottom-center'
-  | 'bottom-left';
+    | 'top-right'
+    | 'top-center'
+    | 'top-left'
+    | 'bottom-right'
+    | 'bottom-center'
+    | 'bottom-left';
   className?: string;
   bodyClassName?: string;
   closeButton?: boolean;
@@ -22,7 +22,7 @@ export const convertToTitleCase = (str: string) => {
     return str
       .toLowerCase()
       .split(' ')
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ')
       .split('_')
       .join(' ');
@@ -36,7 +36,7 @@ const ToastContent = ({ title }: { title: string }) => (
     <Box component="div">
       <p className="font-sm text-black">{convertToTitleCase(title)}</p>
     </Box>
-    <CloseIcon
+    <ShieldCloseIcon
       onClick={() => toast.dismiss()}
       className="ml-auto text-gray-400 cursor-pointer hover:text-white"
     />
@@ -52,7 +52,7 @@ export const toastSuccess = (title: string | undefined | null): void => {
     bodyClassName: 'flex items-center',
     closeButton: false,
     autoClose: 5000,
-    hideProgressBar: true
+    hideProgressBar: true,
   } as ToastOptions);
 };
 
@@ -65,6 +65,6 @@ export const toastError = (title: string | undefined | null): void => {
     bodyClassName: 'flex items-center',
     closeButton: false,
     autoClose: 5000,
-    hideProgressBar: true
+    hideProgressBar: true,
   } as ToastOptions);
 };
