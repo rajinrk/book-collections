@@ -16,6 +16,8 @@ const generateToken = (id: Types.ObjectId) => {
 
 interface IUserDocument extends Document {
   _id: Types.ObjectId;
+  first_name: string;
+  last_name: string;
   email: string;
   password: string;
   comparePassword(candidatePassword: string): Promise<boolean>;
@@ -24,7 +26,13 @@ interface IUserDocument extends Document {
 class AuthController {
   @catchError
   static async register(req: Request, res: Response) {
-    const { email, password, confirmPassword }: RegisterCredentials = req.body;
+    const {
+      first_name,
+      last_name,
+      email,
+      password,
+      confirmPassword,
+    }: RegisterCredentials = req.body;
     if (password !== confirmPassword) {
       return errorResponse(res, 'Passwords do not match');
     }
@@ -33,16 +41,14 @@ class AuthController {
       return errorResponse(res, 'User already exists');
     }
     const user = (await User.create({
+      first_name,
+      last_name,
       email,
       password,
     })) as IUserDocument;
     const token = generateToken(user._id);
     return successResponse(res, 'registeration successfull', {
       token,
-      user: {
-        id: user._id.toString(),
-        email: user.email,
-      },
     });
   }
 
@@ -61,8 +67,10 @@ class AuthController {
     return successResponse(res, 'Login successfull', {
       token,
       user: {
-        id: user._id.toString(),
+        _id: user._id.toString(),
         email: user.email,
+        first_name: user.first_name,
+        last_name: user.last_name,
       },
     });
   }

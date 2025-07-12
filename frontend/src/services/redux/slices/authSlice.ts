@@ -1,15 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
+
+interface user {
+  _id: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+}
 interface authInterface {
   isLoading: boolean;
   successCode: string | null;
   errorCode: string | null;
   isAuthenticated: boolean;
+  userData: user | null;
 }
 const initialState: authInterface = {
   isLoading: false,
   successCode: null,
   errorCode: null,
   isAuthenticated: false,
+  userData: null,
 };
 
 const authSlice: any = createSlice({
@@ -31,6 +40,7 @@ const authSlice: any = createSlice({
     loginSuccess(state, action) {
       state.isLoading = false;
       state.successCode = action.payload.status_code;
+      state.userData = action.payload.data.user;
       state.isAuthenticated = true;
       localStorage.setItem(import.meta.env.TOKEN_NAME, action.payload.data.token);
       state.errorCode = null;

@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import { Box } from '@mui/material';
-import { ShieldCloseIcon } from 'lucide-react';
+import { CircleX } from 'lucide-react';
 
 interface ToastOptions {
   position?:
@@ -36,7 +36,7 @@ const ToastContent = ({ title }: { title: string }) => (
     <Box component="div">
       <p className="font-sm text-black">{convertToTitleCase(title)}</p>
     </Box>
-    <ShieldCloseIcon
+    <CircleX
       onClick={() => toast.dismiss()}
       className="ml-auto text-gray-400 cursor-pointer hover:text-white"
     />

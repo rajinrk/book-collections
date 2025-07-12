@@ -1,13 +1,16 @@
 import { MenuItem, IconButton, Menu, ListItemIcon, ListItemText } from '@mui/material';
 import { Menu as MenuIcon, LayoutDashboard, LogOut } from 'lucide-react';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getUserData } from '../../services/redux/selectors';
 
 interface AuthHeaderProps {
   logout: () => void;
 }
 
 export const AuthHeader: React.FC<AuthHeaderProps> = ({ logout }) => {
+  const userData = useSelector(getUserData);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
@@ -31,8 +34,20 @@ export const AuthHeader: React.FC<AuthHeaderProps> = ({ logout }) => {
     { label: 'Logout', onClick: logout, icon: <LogOut size={16} /> },
   ];
 
+  console.log(userData, 'userdata');
+
   return (
     <div className="flex items-center gap-4">
+      {/* Profile Icon */}
+      {userData && (
+        <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-semibold text-sm">
+          <span className="text-white">
+            {userData.first_name?.charAt(0).toUpperCase()}
+            {userData.last_name?.charAt(0).toUpperCase()}
+          </span>
+        </div>
+      )}
+
       {/* Menu Icon */}
       <IconButton onClick={handleMenuOpen} sx={{ color: 'black' }}>
         <MenuIcon size={20} />

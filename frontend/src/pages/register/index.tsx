@@ -15,6 +15,19 @@ import * as Yup from 'yup';
 
 const registerFields = [
   {
+    name: 'first_name',
+    title: 'First Name',
+    placeHolder: 'Enter your first name',
+    type: 'text',
+    required: true,
+  },
+  {
+    name: 'last_name',
+    title: 'Last name',
+    placeHolder: 'Enter your last name',
+    type: 'text',
+  },
+  {
     name: 'email',
     title: 'Email',
     placeHolder: 'Enter your email',
@@ -41,12 +54,15 @@ const registerFields = [
 ];
 
 const initialValues = {
+  first_name: '',
+  last_name: '',
   email: '',
   password: '',
   confirmPassword: '',
 };
 
 const validationSchema = Yup.object({
+  first_name: Yup.string().required('First name is required'),
   email: Yup.string().email('Invalid email address').required('Email is required'),
   password: Yup.string()
     .min(6, 'Password must be at least 6 characters')
